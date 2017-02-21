@@ -9,6 +9,6 @@ export function getWithDefault(obj, property, defaultVal) {
     return isEmpty(val) ? defaultVal : val;
 }
 
-export function trimStartEnd(str) {
-    return str.substring(1, str.length - 1);
+export function trimRounded(str, depth = 1) {
+    return str.substring(depth, str.length - depth);
 }

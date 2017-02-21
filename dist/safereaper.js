@@ -82,8 +82,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isEmpty;
-/* harmony export (immutable) */ __webpack_exports__["c"] = getWithDefault;
-/* harmony export (immutable) */ __webpack_exports__["b"] = trimStartEnd;
+/* unused harmony export getWithDefault */
+/* harmony export (immutable) */ __webpack_exports__["b"] = trimRounded;
 
 function isEmpty(obj) {
     return obj === null || obj === undefined;
@@ -94,8 +94,10 @@ function getWithDefault(obj, property, defaultVal) {
     return isEmpty(val) ? defaultVal : val;
 }
 
-function trimStartEnd(str) {
-    return str.substring(1, str.length - 1);
+function trimRounded(str) {
+    var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+    return str.substring(depth, str.length - depth);
 }
 
 /***/ }),
@@ -108,14 +110,12 @@ function trimStartEnd(str) {
 /* harmony export (immutable) */ __webpack_exports__["b"] = parse;
 
 
-var JUST_NUMBER = /^\d+$/;
-
 //learn from vue: https://github.com/vuejs/vue/blob/1.1/src/parsers/expression.js#L28
 var DOT_NOTATION_PROPERTY_EXPRESSION = /^[A-Za-z_$][\w$]*$/;
-var BRACKET_NOTATION_PROPERTY_EXPRESSION = /^\['.*?'\]|\[".*?"\]|\[\d+\]$/;
+var BRACKET_NOTATION_PROPERTY_EXPRESSION = /^(\['.*?'\]|\[".*?"\]|\[\d+\])$/;
 
-var dotNotation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimStartEnd */])(DOT_NOTATION_PROPERTY_EXPRESSION.source);
-var bracketNotation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimStartEnd */])(BRACKET_NOTATION_PROPERTY_EXPRESSION.source);
+var dotNotation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimRounded */])(DOT_NOTATION_PROPERTY_EXPRESSION.source);
+var bracketNotation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimRounded */])(BRACKET_NOTATION_PROPERTY_EXPRESSION.source, 2);
 
 //Final expression: /^([A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\])(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\])*$/;
 var PATH_EXPRESSION = new RegExp('^(' + dotNotation + '|' + bracketNotation + ')(?:\\.' + dotNotation + '|' + bracketNotation + ')*$');
@@ -125,35 +125,12 @@ function isPathValid(path) {
 }
 
 function parse(obj, path, defaultVal) {
-    if (DOT_NOTATION_PROPERTY_EXPRESSION.test(path) || BRACKET_NOTATION_PROPERTY_EXPRESSION.test(path)) {
-        console.log('here?', path);
-        return getSimpleValue(obj, path, defaultVal);
-    }
-
-    var matchedKey = path.match(PATH_EXPRESSION)[1];
-
-    var nextObj = getSimpleValue(obj, matchedKey);
-
-    console.log(matchedKey, nextObj);
-
-    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* isEmpty */])(nextObj)) {
+    try {
+        var result = new Function('obj', 'return obj' + (path.startsWith('[') ? '' : '.') + path + ';')(obj);
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* isEmpty */])(result) ? defaultVal : result;
+    } catch (error) {
         return defaultVal;
     }
-
-    return parse(nextObj, getNextPath(path, matchedKey), defaultVal);
-}
-
-function getNextPath(path, previousMatched) {
-    var rawNextPath = path.substring(previousMatched.length);
-    return rawNextPath.startsWith('.') ? rawNextPath.substring(1) : rawNextPath;
-}
-
-function getSimpleValue(obj, property, defaultVal) {
-    if (DOT_NOTATION_PROPERTY_EXPRESSION.test(property)) {
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["c" /* getWithDefault */])(obj, property, defaultVal);
-    }
-    var rawKey = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimStartEnd */])(property);
-    return JUST_NUMBER.test(rawKey) ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["c" /* getWithDefault */])(obj, +rawKey, defaultVal) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["c" /* getWithDefault */])(obj, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimStartEnd */])(rawKey), defaultVal);
 }
 
 /***/ }),

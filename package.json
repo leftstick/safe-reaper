@@ -1,8 +1,12 @@
 {
   "name": "safe-reaper",
   "version": "1.0.0",
-  "description": "Retrieve property value by specifying an expression but without any null/undefined concern",
+  "description": "Retrieve property value by specifying an expression but without any null/undefined reference concern",
   "main": "dist/safereaper.js",
+  "files": [
+    "dist/safereaper.js",
+    "dist/safereaper.min.js"
+  ],
   "scripts": {
     "dist": "webpack",
     "test": "mocha --reporter nyan"

@@ -80,6 +80,7 @@ const users = [{
 }];
 
 reap(users, '[0].name'); //LiLei
+reap(users, '[0]["name"]'); //LiLei
 ```
 
 ### reap(source, pathExpression[, defaultValue]) ###

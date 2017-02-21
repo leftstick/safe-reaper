@@ -1,0 +1,34 @@
+{
+  "name": "safe-reaper",
+  "version": "1.0.0",
+  "description": "Retrieve property value by specifying an expression but without any null/undefined concern",
+  "main": "dist/safereaper.js",
+  "scripts": {
+    "dist": "webpack",
+    "test": "mocha --reporter nyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leftstick/safe-reaper.git"
+  },
+  "keywords": [
+    "safe",
+    "property",
+    "getter"
+  ],
+  "author": "Howard.Zuo",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/leftstick/safe-reaper/issues"
+  },
+  "homepage": "https://github.com/leftstick/safe-reaper#readme",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "mocha": "^3.2.0",
+    "should": "^11.2.0",
+    "unminified-webpack-plugin": "^1.2.0",
+    "webpack": "^2.2.1"
+  }
+}

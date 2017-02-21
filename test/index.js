@@ -94,6 +94,7 @@ describe('verification', function() {
             should(reap(['hello', 'world'], '[2]')).be.Null();
             should(reap(users, '[0].name')).be.exactly('LiLei');
             should(reap(users, '[0]["name"]')).be.exactly('LiLei');
+            should(reap(users, '[0]["age"]', 99)).be.exactly(99);
         });
 
         it('dot/bracket mix', function() {

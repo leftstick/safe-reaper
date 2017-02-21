@@ -81,6 +81,7 @@ const users = [{
 
 reap(users, '[0].name'); //LiLei
 reap(users, '[0]["name"]'); //LiLei
+reap(users, '[0]["age"], 99'); //99
 ```
 
 ### reap(source, pathExpression[, defaultValue]) ###

@@ -1,5 +1,5 @@
 const should = require('should');
-const {reap} = require('../dist/safereaper');
+const reap = require('../dist/safereaper').reap;
 
 describe('verification', function() {
 

@@ -3,7 +3,6 @@ export function isEmpty(obj) {
     return obj === null || obj === undefined;
 }
 
-
 export function getWithDefault(obj, property, defaultVal) {
     const val = obj[property];
     return isEmpty(val) ? defaultVal : val;

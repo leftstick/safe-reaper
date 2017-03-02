@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -106,8 +106,10 @@ function trimRounded(str) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__string__ = __webpack_require__(2);
 /* harmony export (immutable) */ __webpack_exports__["a"] = isPathValid;
 /* harmony export (immutable) */ __webpack_exports__["b"] = parse;
+
 
 
 //learn from vue: https://github.com/vuejs/vue/blob/1.1/src/parsers/expression.js#L28
@@ -126,7 +128,7 @@ function isPathValid(path) {
 
 function parse(obj, path, defaultVal) {
     try {
-        var result = new Function('obj', 'return obj' + (path.startsWith('[') ? '' : '.') + path + ';')(obj);
+        var result = new Function('obj', 'return obj' + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__string__["a" /* startsWith */])(path, '[') ? '' : '.') + path + ';')(obj);
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* isEmpty */])(result) ? defaultVal : result;
     } catch (error) {
         return defaultVal;
@@ -135,6 +137,17 @@ function parse(obj, path, defaultVal) {
 
 /***/ }),
 /* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = startsWith;
+
+function startsWith(src, searchString) {
+    return src.substr(0, searchString.length) === searchString;
+}
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -1,6 +1,6 @@
 {
   "name": "safe-reaper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retrieve property value by specifying an expression but without any null/undefined reference concern",
   "main": "dist/safereaper.js",
   "files": [

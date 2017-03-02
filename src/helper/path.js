@@ -1,4 +1,5 @@
 import {isEmpty, trimRounded} from './object';
+import {startsWith} from './string';
 
 //learn from vue: https://github.com/vuejs/vue/blob/1.1/src/parsers/expression.js#L28
 const DOT_NOTATION_PROPERTY_EXPRESSION = /^[A-Za-z_$][\w$]*$/;
@@ -16,7 +17,7 @@ export function isPathValid(path) {
 
 export function parse(obj, path, defaultVal) {
     try {
-        const result = new Function('obj', `return obj${path.startsWith('[') ? '' : '.'}${path};`)(obj);
+        const result = new Function('obj', `return obj${startsWith(path, '[') ? '' : '.'}${path};`)(obj);
         return isEmpty(result) ? defaultVal : result;
     } catch (error) {
         return defaultVal;

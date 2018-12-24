@@ -7,56 +7,73 @@
 		var a = factory();
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function() {
+})((typeof window !== 'undefined' ? window : this), function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
-
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -65,15 +82,16 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,99 +99,72 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isEmpty;
-/* unused harmony export getWithDefault */
-/* harmony export (immutable) */ __webpack_exports__["b"] = trimRounded;
+__webpack_require__.r(__webpack_exports__);
 
+// CONCATENATED MODULE: ./src/helper/object.js
 function isEmpty(obj) {
-    return obj === null || obj === undefined;
+  return obj === null || obj === undefined;
 }
-
 function getWithDefault(obj, property, defaultVal) {
-    var val = obj[property];
-    return isEmpty(val) ? defaultVal : val;
+  var val = obj[property];
+  return isEmpty(val) ? defaultVal : val;
 }
-
 function trimRounded(str) {
-    var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-    return str.substring(depth, str.length - depth);
+  var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  return str.substring(depth, str.length - depth);
 }
+// CONCATENATED MODULE: ./src/helper/string.js
+function startsWith(src, searchString) {
+  return src.substr(0, searchString.length) === searchString;
+}
+// CONCATENATED MODULE: ./src/helper/path.js
 
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+ //learn from vue: https://github.com/vuejs/vue/blob/1.1/src/parsers/expression.js#L28
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__string__ = __webpack_require__(2);
-/* harmony export (immutable) */ __webpack_exports__["a"] = isPathValid;
-/* harmony export (immutable) */ __webpack_exports__["b"] = parse;
-
-
-
-//learn from vue: https://github.com/vuejs/vue/blob/1.1/src/parsers/expression.js#L28
 var DOT_NOTATION_PROPERTY_EXPRESSION = /^[A-Za-z_$][\w$]*$/;
 var BRACKET_NOTATION_PROPERTY_EXPRESSION = /^(\['.*?'\]|\[".*?"\]|\[\d+\])$/;
+var dotNotation = trimRounded(DOT_NOTATION_PROPERTY_EXPRESSION.source);
+var bracketNotation = trimRounded(BRACKET_NOTATION_PROPERTY_EXPRESSION.source, 2); //Final expression: /^([A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\])(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\])*$/;
 
-var dotNotation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimRounded */])(DOT_NOTATION_PROPERTY_EXPRESSION.source);
-var bracketNotation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* trimRounded */])(BRACKET_NOTATION_PROPERTY_EXPRESSION.source, 2);
-
-//Final expression: /^([A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\])(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\])*$/;
 var PATH_EXPRESSION = new RegExp('^(' + dotNotation + '|' + bracketNotation + ')(?:\\.' + dotNotation + '|' + bracketNotation + ')*$');
-
 function isPathValid(path) {
-    return PATH_EXPRESSION.test(path);
+  return PATH_EXPRESSION.test(path);
 }
-
 function parse(obj, path, defaultVal) {
-    try {
-        var result = new Function('obj', 'return obj' + (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__string__["a" /* startsWith */])(path, '[') ? '' : '.') + path + ';')(obj);
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* isEmpty */])(result) ? defaultVal : result;
-    } catch (error) {
-        return defaultVal;
-    }
+  try {
+    var result = new Function('obj', "return obj".concat(startsWith(path, '[') ? '' : '.').concat(path, ";"))(obj);
+    return isEmpty(result) ? defaultVal : result;
+  } catch (error) {
+    return defaultVal;
+  }
 }
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = startsWith;
-
-function startsWith(src, searchString) {
-    return src.substr(0, searchString.length) === searchString;
-}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper_path__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helper_object__ = __webpack_require__(0);
-/* harmony export (immutable) */ __webpack_exports__["reap"] = reap;
-
+// CONCATENATED MODULE: ./src/index.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reap", function() { return reap; });
 
 
 function reap(obj, path) {
-    var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var extraHandler = arguments.length > 3 ? arguments[3] : undefined;
 
-    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helper_object__["a" /* isEmpty */])(obj)) {
-        return defaultVal;
-    }
+  if (isEmpty(obj)) {
+    return defaultVal;
+  }
 
-    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helper_object__["a" /* isEmpty */])(path)) {
-        throw new Error('[path] must not be null/undefined');
-    }
+  if (isEmpty(path)) {
+    throw new Error('[path] must not be null/undefined');
+  }
 
-    if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helper_path__["a" /* isPathValid */])(path)) {
-        throw new Error('invalid path, check out: https://github.com/leftstick/safe-reaper/blob/master/README.md#accept-expression');
-    }
+  if (!isPathValid(path)) {
+    throw new Error('invalid path, check out: https://github.com/leftstick/safe-reaper/blob/master/README.md#accept-expression');
+  }
 
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helper_path__["b" /* parse */])(obj, path, defaultVal);
+  var value = parse(obj, path, defaultVal);
+
+  if (!extraHandler || typeof extraHandler !== 'function') {
+    return value;
+  }
+
+  return extraHandler(value);
 }
 
 /***/ })

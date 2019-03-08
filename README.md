@@ -99,7 +99,7 @@ Dot notation - `a`, `a.b`, `a.b.c`
 
 Bracket notation - `a['b']`, `a[0]`, `a[0].c`, `a[0]['c']`
 
-Bybrid - `a.b[0]`, `a[0].b`
+Hybrid - `a.b[0]`, `a[0].b`
 
 ## LICENSE
 

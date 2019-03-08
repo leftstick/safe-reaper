@@ -73,7 +73,7 @@ reap(obj, 'user.name') //Hanmeimei
 reap(obj, 'user.age') //null
 reap(obj, 'user.age', 33) //33
 reap(obj, null, 33) //Error occurs
-reap(users, 'user.name', '', val => `Hello ${val}`) //Hello HanMeimei
+reap(obj, 'user.name', '', val => `Hello ${val}`) //Hello HanMeimei
 
 const users = [
   {

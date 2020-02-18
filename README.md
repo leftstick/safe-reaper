@@ -60,8 +60,8 @@ const { reap } = require('safe-reaper')
 ## Usage
 
 ```javascript
-reap(null, 'user.age') //null
-reap(null, 'user.age', 38) //38
+reap(null, 'user.age') // undefined
+reap(null, 'user.age', 38) // 38
 
 const obj = {
   user: {
@@ -69,11 +69,11 @@ const obj = {
   }
 }
 
-reap(obj, 'user.name') //Hanmeimei
-reap(obj, 'user.age') //null
-reap(obj, 'user.age', 33) //33
-reap(obj, null, 33) //Error occurs
-reap(obj, 'user.name', '', val => `Hello ${val}`) //Hello HanMeimei
+reap(obj, 'user.name') // Hanmeimei
+reap(obj, 'user.age') // undefined
+reap(obj, 'user.age', 33) // 33
+reap(obj, null, 33) // Error occurs
+reap(obj, 'user.name', '', val => `Hello ${val}`) // Hello HanMeimei
 
 const users = [
   {
@@ -81,9 +81,9 @@ const users = [
   }
 ]
 
-reap(users, '[0].name') //LiLei
-reap(users, '[0]["name"]') //LiLei
-reap(users, '[0]["age"]', 99) //99
+reap(users, '[0].name') // LiLei
+reap(users, '[0]["name"]') // LiLei
+reap(users, '[0]["age"]', 99) // 99
 ```
 
 ### reap(source, pathExpression[, defaultValue, extraHandler])

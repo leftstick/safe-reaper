@@ -1,16 +1,14 @@
 const should = require('should')
 const reap = require('../dist/safereaper').reap
 
-console.log('fuck you')
-
 describe('verification', function() {
   describe('obj is empty', function() {
     it('without default value', function() {
-      should(reap(null, 'name')).be.Null()
+      should(reap(null, 'name')).be.Undefined()
     })
 
     it('without default value', function() {
-      should(reap(undefined, 'name')).be.Null()
+      should(reap(undefined, 'name')).be.Undefined()
     })
 
     it('with default value', function() {
@@ -22,7 +20,7 @@ describe('verification', function() {
     })
 
     it('with default value is undefined', function() {
-      should(reap(undefined, 'name', undefined)).be.Null()
+      should(reap(undefined, 'name', undefined)).be.Undefined()
     })
   })
 
@@ -85,7 +83,7 @@ describe('verification', function() {
       }
 
       should(reap(obj, 'name')).be.exactly('hello')
-      should(reap(obj, 'age')).be.Null()
+      should(reap(obj, 'age')).be.Undefined()
     })
 
     it('just bracket notation property, string index', function() {
@@ -93,7 +91,7 @@ describe('verification', function() {
         name: 'hello'
       }
       should(reap(obj, '["name"]')).be.exactly('hello')
-      should(reap(obj, '["age"]')).be.Null()
+      should(reap(obj, '["age"]')).be.Undefined()
     })
 
     it('just bracket notation property, string index', function() {
@@ -103,7 +101,7 @@ describe('verification', function() {
         }
       ]
       should(reap(['hello', 'world'], '[1]')).be.exactly('world')
-      should(reap(['hello', 'world'], '[2]')).be.Null()
+      should(reap(['hello', 'world'], '[2]')).be.Undefined()
       should(reap(users, '[0].name')).be.exactly('LiLei')
       should(reap(users, '[0]["name"]')).be.exactly('LiLei')
       should(reap(users, '[0]["age"]', 99)).be.exactly(99)
@@ -127,7 +125,7 @@ describe('verification', function() {
         'LiLei'
       )
       should(reap(obj, '["user"].friends[0]["name"]')).be.exactly('LiLei')
-      should(reap(obj, '["user"].friends[0]["age"]')).be.Null()
+      should(reap(obj, '["user"].friends[0]["age"]')).be.Undefined()
       should(reap(obj, '["user"].friends[0]["age"]', 99)).be.exactly(99)
     })
   })

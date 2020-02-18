@@ -1,7 +1,7 @@
 import { isPathValid, parse } from './helper/path'
 import { isEmpty } from './helper/object'
 
-export function reap(obj, path, defaultVal = null, extraHandler) {
+export function reap(obj, path, defaultVal, extraHandler) {
   if (isEmpty(obj)) {
     return defaultVal
   }

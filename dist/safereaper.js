@@ -142,10 +142,7 @@ function parse(obj, path, defaultVal) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reap", function() { return reap; });
 
 
-function reap(obj, path) {
-  var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var extraHandler = arguments.length > 3 ? arguments[3] : undefined;
-
+function reap(obj, path, defaultVal, extraHandler) {
   if (isEmpty(obj)) {
     return defaultVal;
   }

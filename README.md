@@ -1,6 +1,7 @@
 # safe-reaper
 
 [![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
 ![][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
 ![][david-url]

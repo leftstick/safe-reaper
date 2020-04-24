@@ -1,17 +1,22 @@
 {
   "name": "safe-reaper",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Retrieve property value by specifying an expression but without any null/undefined reference concern",
   "main": "dist/safereaper.js",
-  "typings": "typings/index.d.ts",
+  "module": "dist/safereaper.esm.js",
+  "jsnext:main": "dist/safereaper.esm.js",
+  "typings": "dist/src/index.d.ts",
+  "sideEffects": false,
   "files": [
+    "dist/safereaper.esm.js",
     "dist/safereaper.js",
-    "dist/safereaper.min.js",
-    "typings"
+    "dist/src/"
   ],
   "scripts": {
-    "dist": "webpack",
-    "test": "mocha --reporter nyan"
+    "build": "rm -rf dist && rollup -c",
+    "test": "jest",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
+    "prepublish": "yarn build"
   },
   "repository": {
     "type": "git",
@@ -29,13 +34,13 @@
   },
   "homepage": "https://github.com/leftstick/safe-reaper#readme",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "babel-loader": "^8.0.6",
-    "mocha": "^7.0.1",
-    "should": "^13.2.3",
-    "unminified-webpack-plugin": "^2.0.0",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "@types/jest": "^25.2.1",
+    "coveralls": "^3.0.14",
+    "jest": "^25.4.0",
+    "react-coding-style": "^1.0.0",
+    "rollup": "^2.7.2",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
   }
 }

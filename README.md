@@ -2,8 +2,10 @@
 
 [![NPM version][npm-image]][npm-url]
 ![][travis-url]
+[![Coverage Status][coverage-image]][coverage-url]
 ![][david-url]
 ![][dt-url]
+[![code style: prettier][prettier-image]][prettier-url]
 ![][license-url]
 
 Retrieve property value by specifying an expression but without any null/undefined reference concern
@@ -26,7 +28,7 @@ bower install --save safe-reaper
 
 ### ES2015
 
-```javascript
+```typescript
 import { reap } from 'safe-reaper'
 ```
 
@@ -46,10 +48,7 @@ const { reap } = require('safe-reaper')
     <title>DEMO</title>
   </head>
   <body>
-    <script
-      type="text/javascript"
-      src="node_modules/safe-reaper/dist/safereaper.min.js"
-    ></script>
+    <script type="text/javascript" src="node_modules/safe-reaper/dist/safereaper.min.js"></script>
     <script type="text/javascript">
       var reap = window.reap
     </script>
@@ -59,7 +58,7 @@ const { reap } = require('safe-reaper')
 
 ## Usage
 
-```javascript
+```typescript
 reap(null, 'user.age') // undefined
 reap(null, 'user.age', 38) // 38
 
@@ -69,11 +68,11 @@ const obj = {
   }
 }
 
-reap(obj, 'user.name') // Hanmeimei
-reap(obj, 'user.age') // undefined
-reap(obj, 'user.age', 33) // 33
-reap(obj, null, 33) // Error occurs
-reap(obj, 'user.name', '', val => `Hello ${val}`) // Hello HanMeimei
+reap<typeof obj, string>(obj, 'user.name') // Hanmeimei
+reap<typeof obj, undefined>(obj, 'user.age') // undefined
+reap<typeof obj, number>(obj, 'user.age', 33) // 33
+reap<typeof obj, any>(obj, null, 33) // Error occurs
+reap<typeof obj, string, string>(obj, 'user.name', '', val => `Hello ${val}`) // Hello HanMeimei
 
 const users = [
   {
@@ -81,9 +80,9 @@ const users = [
   }
 ]
 
-reap(users, '[0].name') // LiLei
-reap(users, '[0]["name"]') // LiLei
-reap(users, '[0]["age"]', 99) // 99
+reap<typeof users, string>(users, '[0].name') // LiLei
+reap<typeof users, string>(users, '[0]["name"]') // LiLei
+reap<typeof users, number>(users, '[0]["age"]', 99) // 99
 ```
 
 ### reap(source, pathExpression[, defaultValue, extraHandler])
@@ -107,7 +106,12 @@ Hybrid - `a.b[0]`, `a[0].b`
 
 [npm-url]: https://npmjs.org/package/safe-reaper
 [npm-image]: https://badge.fury.io/js/safe-reaper.png
-[travis-url]: https://api.travis-ci.org/leftstick/safe-reaper.svg?branch=master
+[travis-image]: https://www.travis-ci.org/leftstick/safe-reaper.svg?branch=master
+[travis-url]: https://travis-ci.com/leftstick/safe-reaper
+[coverage-image]: https://coveralls.io/repos/github/leftstick/safe-reaper/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/leftstick/safe-reaper
 [david-url]: https://david-dm.org/leftstick/safe-reaper.png
 [dt-url]: https://img.shields.io/npm/dt/safe-reaper.svg
 [license-url]: https://img.shields.io/npm/l/safe-reaper.svg
+[prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
+[prettier-url]: https://github.com/prettier/prettier

@@ -85,6 +85,23 @@ describe('verification', function() {
       expect(reap<typeof obj, undefined>(obj, 'age')).toBeUndefined()
     })
 
+    it('with empty value', function() {
+      interface User {
+        grade: String
+      }
+      const obj: User = {
+        grade: null
+      }
+
+      expect(reap<typeof obj, undefined>(obj, 'grade')).toBeNull()
+      expect(reap<typeof obj, string>(obj, 'grade', 'A')).toBe('A')
+      expect(reap<typeof obj, undefined>(obj, 'grade', undefined)).toBeNull()
+      expect(reap<typeof obj, undefined>(obj, 'grade', null)).toBeNull()
+      expect(reap<typeof obj, number>(obj, 'grade', 0)).toBe(0)
+      expect(reap<typeof obj, boolean>(obj, 'grade', false)).toBe(false)
+      expect(reap<typeof obj, string>(obj, 'grade', '0')).toBe('0')
+    })
+
     it('just bracket notation property, string index', function() {
       const obj = {
         name: 'hello'

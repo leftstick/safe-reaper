@@ -21,7 +21,10 @@ export function parse<T extends object, K>(obj: T, path: string, defaultVal: K):
   try {
     // eslint-disable-next-line no-new-func
     const result = new Function('obj', `return obj${path.startsWith('[') ? '' : '.'}${path};`)(obj)
-    return isEmpty(result) ? defaultVal : result
+    if (!isEmpty(result)) {
+      return result
+    }
+    return isEmpty(defaultVal) ? result : defaultVal
   } catch (error) {
     return defaultVal
   }

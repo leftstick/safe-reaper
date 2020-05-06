@@ -49,7 +49,7 @@ const { reap } = require('safe-reaper')
     <title>DEMO</title>
   </head>
   <body>
-    <script type="text/javascript" src="node_modules/safe-reaper/dist/safereaper.min.js"></script>
+    <script type="text/javascript" src="node_modules/safe-reaper/dist/safereaper.js"></script>
     <script type="text/javascript">
       var reap = window.reap
     </script>

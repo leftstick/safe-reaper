@@ -142,6 +142,14 @@ describe('verification', function() {
       expect(reap<typeof obj, string>(obj, '["user"].friends[0]["age"]')).toBeUndefined()
       expect(reap<typeof obj, number>(obj, '["user"].friends[0]["age"]', 99)).toBe(99)
     })
+
+    it('path not exist', function() {
+      const obj = {
+        name: 'hello'
+      }
+      expect(reap<typeof obj, undefined>(obj, 'user.friends[0].name')).toBeUndefined()
+      expect(reap<typeof obj, string>(obj, 'user.friends[0].name', 'hello')).toBe('hello')
+    })
   })
 
   describe('with extraHandler', function() {

@@ -69,11 +69,11 @@ const obj = {
   }
 }
 
-reap<typeof obj, string>(obj, 'user.name') // Hanmeimei
-reap<typeof obj, undefined>(obj, 'user.age') // undefined
-reap<typeof obj, number>(obj, 'user.age', 33) // 33
-reap<typeof obj, any>(obj, null, 33) // Error occurs
-reap<typeof obj, string, string>(obj, 'user.name', '', val => `Hello ${val}`) // Hello HanMeimei
+reap<string>(obj, 'user.name') // Hanmeimei
+reap<undefined>(obj, 'user.age') // undefined
+reap<number>(obj, 'user.age', 33) // 33
+reap<any>(obj, null, 33) // Error occurs
+reap<string, string>(obj, 'user.name', '', val => `Hello ${val}`) // Hello HanMeimei
 
 const users = [
   {
@@ -81,9 +81,9 @@ const users = [
   }
 ]
 
-reap<typeof users, string>(users, '[0].name') // LiLei
-reap<typeof users, string>(users, '[0]["name"]') // LiLei
-reap<typeof users, number>(users, '[0]["age"]', 99) // 99
+reap<string>(users, '[0].name') // LiLei
+reap<string>(users, '[0]["name"]') // LiLei
+reap<number>(users, '[0]["age"]', 99) // 99
 ```
 
 ### reap(source, pathExpression[, defaultValue, extraHandler])

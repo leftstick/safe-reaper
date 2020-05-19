@@ -5,18 +5,13 @@ interface IExtraHandler<K, V> {
   (val: K): V
 }
 
-export function reap<T extends object, K>(obj: T, path: string): K
+export function reap<K>(obj: object, path: string): K
 
-export function reap<T extends object, K>(obj: T, path: string, defaultVal: K): K
+export function reap<K>(obj: object, path: string, defaultVal: K): K
 
-export function reap<T extends object, K, V>(obj: T, path: string, defaultVal: K, extraHandler: IExtraHandler<K, V>): V
+export function reap<K, V>(obj: object, path: string, defaultVal: K, extraHandler: IExtraHandler<K, V>): V
 
-export function reap<T extends object, K, V>(
-  obj: T,
-  path: string,
-  defaultVal?: K,
-  extraHandler?: IExtraHandler<K, V>
-): K | V {
+export function reap<K, V>(obj: object, path: string, defaultVal?: K, extraHandler?: IExtraHandler<K, V>): K | V {
   if (isEmpty(obj)) {
     return defaultVal
   }

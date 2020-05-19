@@ -81,8 +81,8 @@ describe('verification', function() {
         name: 'hello'
       }
 
-      expect(reap<typeof obj, string>(obj, 'name')).toBe('hello')
-      expect(reap<typeof obj, undefined>(obj, 'age')).toBeUndefined()
+      expect(reap<string>(obj, 'name')).toBe('hello')
+      expect(reap<undefined>(obj, 'age')).toBeUndefined()
     })
 
     it('with empty value', function() {
@@ -93,21 +93,21 @@ describe('verification', function() {
         grade: null
       }
 
-      expect(reap<typeof obj, undefined>(obj, 'grade')).toBeNull()
-      expect(reap<typeof obj, string>(obj, 'grade', 'A')).toBe('A')
-      expect(reap<typeof obj, undefined>(obj, 'grade', undefined)).toBeNull()
-      expect(reap<typeof obj, undefined>(obj, 'grade', null)).toBeNull()
-      expect(reap<typeof obj, number>(obj, 'grade', 0)).toBe(0)
-      expect(reap<typeof obj, boolean>(obj, 'grade', false)).toBe(false)
-      expect(reap<typeof obj, string>(obj, 'grade', '0')).toBe('0')
+      expect(reap<undefined>(obj, 'grade')).toBeNull()
+      expect(reap<string>(obj, 'grade', 'A')).toBe('A')
+      expect(reap<undefined>(obj, 'grade', undefined)).toBeNull()
+      expect(reap<undefined>(obj, 'grade', null)).toBeNull()
+      expect(reap<number>(obj, 'grade', 0)).toBe(0)
+      expect(reap<boolean>(obj, 'grade', false)).toBe(false)
+      expect(reap<string>(obj, 'grade', '0')).toBe('0')
     })
 
     it('just bracket notation property, string index', function() {
       const obj = {
         name: 'hello'
       }
-      expect(reap<typeof obj, string>(obj, '["name"]')).toBe('hello')
-      expect(reap<typeof obj, undefined>(obj, '["age"]')).toBeUndefined()
+      expect(reap<string>(obj, '["name"]')).toBe('hello')
+      expect(reap<undefined>(obj, '["age"]')).toBeUndefined()
     })
 
     it('just bracket notation property, string index', function() {
@@ -116,11 +116,11 @@ describe('verification', function() {
           name: 'LiLei'
         }
       ]
-      expect(reap<string[], string>(['hello', 'world'], '[1]')).toBe('world')
-      expect(reap<string[], string>(['hello', 'world'], '[2]')).toBeUndefined()
-      expect(reap<typeof users, string>(users, '[0].name')).toBe('LiLei')
-      expect(reap<typeof users, string>(users, '[0]["name"]')).toBe('LiLei')
-      expect(reap<typeof users, number>(users, '[0]["age"]', 99)).toBe(99)
+      expect(reap<string>(['hello', 'world'], '[1]')).toBe('world')
+      expect(reap<string>(['hello', 'world'], '[2]')).toBeUndefined()
+      expect(reap<string>(users, '[0].name')).toBe('LiLei')
+      expect(reap<string>(users, '[0]["name"]')).toBe('LiLei')
+      expect(reap<number>(users, '[0]["age"]', 99)).toBe(99)
     })
 
     it('dot/bracket mix', function() {
@@ -133,22 +133,22 @@ describe('verification', function() {
           ]
         }
       }
-      expect(reap<typeof obj, string>(obj, 'user.friends[0].name')).toBe('LiLei')
-      expect(reap<typeof obj, string>(obj, '["user"]["friends"][0].name')).toBe('LiLei')
-      expect(reap<typeof obj, string>(obj, '["user"]["friends"][0]["name"]')).toBe('LiLei')
-      expect(reap<typeof obj, string>(obj, '["user"]["friends"]["0"]["name"]')).toBe('LiLei')
-      expect(reap<typeof obj, string>(obj, '["user"]["fri" + "ends"][0]["name"]')).toBe('LiLei')
-      expect(reap<typeof obj, string>(obj, '["user"].friends[0]["name"]')).toBe('LiLei')
-      expect(reap<typeof obj, string>(obj, '["user"].friends[0]["age"]')).toBeUndefined()
-      expect(reap<typeof obj, number>(obj, '["user"].friends[0]["age"]', 99)).toBe(99)
+      expect(reap<string>(obj, 'user.friends[0].name')).toBe('LiLei')
+      expect(reap<string>(obj, '["user"]["friends"][0].name')).toBe('LiLei')
+      expect(reap<string>(obj, '["user"]["friends"][0]["name"]')).toBe('LiLei')
+      expect(reap<string>(obj, '["user"]["friends"]["0"]["name"]')).toBe('LiLei')
+      expect(reap<string>(obj, '["user"]["fri" + "ends"][0]["name"]')).toBe('LiLei')
+      expect(reap<string>(obj, '["user"].friends[0]["name"]')).toBe('LiLei')
+      expect(reap<string>(obj, '["user"].friends[0]["age"]')).toBeUndefined()
+      expect(reap<number>(obj, '["user"].friends[0]["age"]', 99)).toBe(99)
     })
 
     it('path not exist', function() {
       const obj = {
         name: 'hello'
       }
-      expect(reap<typeof obj, undefined>(obj, 'user.friends[0].name')).toBeUndefined()
-      expect(reap<typeof obj, string>(obj, 'user.friends[0].name', 'hello')).toBe('hello')
+      expect(reap<undefined>(obj, 'user.friends[0].name')).toBeUndefined()
+      expect(reap<string>(obj, 'user.friends[0].name', 'hello')).toBe('hello')
     })
   })
 
@@ -158,8 +158,8 @@ describe('verification', function() {
         name: 'hello'
       }
 
-      expect(reap<typeof obj, string>(obj, 'name', null)).toBe('hello')
-      expect(reap<typeof obj, number>(obj, 'age', 9)).toBe(9)
+      expect(reap<string>(obj, 'name', null)).toBe('hello')
+      expect(reap<number>(obj, 'age', 9)).toBe(9)
     })
 
     it('valid extraHandler', function() {
@@ -167,8 +167,8 @@ describe('verification', function() {
         name: 'hello'
       }
 
-      expect(reap<typeof obj, string, string>(obj, 'name', null, val => val + ' world!')).toBe('hello world!')
-      expect(reap<typeof obj, number, string>(obj, 'age', 9, val => val + ' world!')).toBe('9 world!')
+      expect(reap<string, string>(obj, 'name', null, val => val + ' world!')).toBe('hello world!')
+      expect(reap<number, string>(obj, 'age', 9, val => val + ' world!')).toBe('9 world!')
     })
   })
 })

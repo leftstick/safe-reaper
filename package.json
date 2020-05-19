@@ -1,6 +1,6 @@
 {
   "name": "safe-reaper",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Retrieve property value by specifying an expression but without any null/undefined reference concern",
   "main": "dist/safereaper.js",
   "module": "dist/safereaper.esm.js",
@@ -34,13 +34,13 @@
   },
   "homepage": "https://github.com/leftstick/safe-reaper#readme",
   "devDependencies": {
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
     "coveralls": "^3.1.0",
     "jest": "^26.0.1",
     "react-coding-style": "^1.0.0",
-    "rollup": "^2.8.0",
-    "rollup-plugin-typescript2": "^0.27.0",
-    "ts-jest": "^25.4.0",
-    "typescript": "^3.8.3"
+    "rollup": "^2.10.4",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "ts-jest": "^26.0.0",
+    "typescript": "^3.9.2"
   }
 }

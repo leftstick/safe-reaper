@@ -17,7 +17,7 @@ export function isPathValid(path: string) {
   return PATH_EXPRESSION.test(path)
 }
 
-export function parse<T extends object, K>(obj: T, path: string, defaultVal: K): K {
+export function parse<K>(obj: object, path: string, defaultVal: K): K {
   try {
     // eslint-disable-next-line no-new-func
     const result = new Function('obj', `return obj${path.startsWith('[') ? '' : '.'}${path};`)(obj)
